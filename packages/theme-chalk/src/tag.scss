@@ -1,0 +1,94 @@
+@import "./common/var.scss";
+@import "./mixins/mixins.scss";
+
+@mixin tag-theme($color-percent, $background-percent, $border-percent, $hover-percent) {
+  color: mix($--color-primary, $--color-white, $color-percent);
+  background-color: mix($--color-primary, $--color-white, $background-percent);
+  border-color: mix($--color-primary, $--color-white, $border-percent);
+
+  .mf-tag-close {
+    &:hover {
+      color: $--color-white;
+      background: mix($--color-primary, $--color-white, $hover-percent);
+    }
+  }
+
+  &.mf-tag--green {
+    color: mix($--color-green, $--color-white, $color-percent);
+    background-color: mix($--color-green, $--color-white, $background-percent);
+    border-color: mix($--color-green, $--color-white, $border-percent);
+    .mf-tag-close {
+      &:hover {
+        color: $--color-white;
+        background: mix($--color-green, $--color-white, $hover-percent);
+      }
+    }
+  }
+  &.mf-tag--yellow {
+    color: mix($--color-yellow, $--color-white, $color-percent);
+    background-color: mix($--color-yellow, $--color-white, $background-percent);
+    border-color: mix($--color-yellow, $--color-white, $border-percent);
+    .mf-tag-close {
+      &:hover {
+        color: $--color-white;
+        background: mix($--color-yellow, $--color-white, $hover-percent);
+      }
+    }
+  }
+  &.mf-tag--red {
+    color: mix($--color-red, $--color-white, $color-percent);
+    background-color: mix($--color-red, $--color-white, $background-percent);
+    border-color: mix($--color-red, $--color-white, $border-percent);
+    .mf-tag-close {
+      &:hover {
+        color: $--color-white;
+        background: mix($--color-red, $--color-white, $hover-percent);
+      }
+    }
+  }
+  &.mf-tag--blue {
+    color: mix($--color-blue, $--color-white, $color-percent);
+    background-color: mix($--color-blue, $--color-white, $background-percent);
+    border-color: mix($--color-blue, $--color-white, $border-percent);
+    .mf-tag-close {
+      &:hover {
+        color: $--color-white;
+        background: mix($--color-blue, $--color-white, $hover-percent);
+      }
+    }
+  }
+}
+@mixin tag-size($padding-vertical, $padding-horizontal) {
+  padding: $padding-vertical $padding-horizontal;
+}
+@include el(tag) {
+  @include tag-theme(100%, 10%, 30%, 100%);
+  display: inline-block;
+  font-size: $--tag-font-size;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: $--tag-border-radius;
+  @include tag-size($--tag-middle-padding-vertical, $--tag-middle-padding-horizontal);
+
+  .mf-tag-close {
+    margin-left: 5px;
+    padding: 1.5px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+}
+
+.mf-tag--dark {
+  @include tag-theme(0%, 100%, 100%, 50%);
+}
+.mf-tag--plain {
+  @include tag-theme(100%, 0%, 50%, 100%);
+}
+
+.mf-tag--large {
+  @include tag-size($--tag-large-padding-vertical, $--tag-large-padding-horizontal);
+}
+.mf-tag--small {
+  @include tag-size($--tag-small-padding-vertical, $--tag-small-padding-horizontal);
+}

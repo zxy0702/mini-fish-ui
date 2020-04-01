@@ -1,0 +1,55 @@
+@import "./mixins/mixins.scss";
+@import "./common/var.scss";
+
+@include el(select-dropdown) {
+  position: absolute;
+  z-index: 1;
+  margin-top: 10px;
+  padding: 5px 0;
+  min-width: 240px;
+  border: 1px solid #e4e7ed;
+  border-radius: 5px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  background-color: $--color-white;
+
+  @include when(multiple) {
+    & .mf-select-menu__item.selected {
+      &::after {
+        position: absolute;
+        right: 20px;
+        font-family: "iconfont" !important;
+        content: "\e886";
+        font-size: 12px;
+        font-weight: bold;
+      }
+    }
+  }
+}
+@include el(menu-arrow) {
+  position: absolute;
+  top: -11px;
+  left: 25px;
+  width: 0;
+  height: 0;
+  border-width: 6px;
+  border-style: solid;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: $--border-color-base;
+  border-left-color: transparent;
+
+  &::after {
+    position: absolute;
+    top: -4px;
+    left: -5px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-width: 5px;
+    border-style: solid;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: #fff;
+    border-left-color: transparent;
+  }
+}

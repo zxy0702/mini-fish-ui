@@ -1,10 +1,12 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
+import Vue from 'vue';
+import App from './App.vue';
+import MFUI from '../packages/index';
+import '../packages/theme-chalk/src/index.scss'
 
 Vue.config.productionTip = false
 
+Vue.use(MFUI);
+
 new Vue({
-  router,
-  render: h => h(App)
+  render: h => h(App),
 }).$mount('#app')

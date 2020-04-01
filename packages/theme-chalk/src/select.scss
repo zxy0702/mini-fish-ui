@@ -1,0 +1,48 @@
+@import "./mixins/mixins.scss";
+@import "./common/var.scss";
+
+@include el(select) {
+  display: flex;
+  position: relative;
+  width: 240px;
+//   overflow: hidden;
+
+  .mf-input,
+  .mf-input__inner {
+    //   clear: both;
+    width: 100%;
+    flex-grow: 1;
+  }
+
+  @include when(disabled) {
+    cursor: not-allowed;
+  }
+}
+
+@include el(select-tag) {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 208px;
+  flex-grow: 1;
+  .mf-tag {
+    margin-left: 5px;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+.slide-fade-enter-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-enter, .slide-fade-leave-to
+  /* .slide-fade-leave-active for below version 2.1.8 */ {
+  transform: translateY(-10px);
+  opacity: 0;
+}

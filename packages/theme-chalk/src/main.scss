@@ -1,0 +1,9 @@
+@import "./mixins/mixins.scss";
+
+@include el(main) {
+    display: block;
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    // background-color: #fff;
+}

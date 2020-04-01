@@ -1,0 +1,26 @@
+@import "./mixins/mixins.scss";
+
+@include el(select-menu__item) {
+    padding: 5px 15px;
+    color: #777;
+    cursor: pointer;
+    overflow: hidden;
+
+    &:hover {
+        background-color: mix($--color-primary, $--color-white, $--button-hover-tint-percent);
+    }
+
+    &.selected {
+        color: $--color-primary;
+        font-weight: bold;
+    }
+
+    @include when(disabled) {
+        color: $--select-option-disabled-color;
+        cursor: not-allowed;
+
+        &:hover {
+            background-color: $--color-white;
+        }
+    }
+}

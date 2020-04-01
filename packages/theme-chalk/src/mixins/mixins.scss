@@ -1,0 +1,112 @@
+@import "../common/var.scss";
+@import "./config.scss";
+
+@mixin el($block) {
+  $El: $namespace + "-" + $block !global;
+
+  .#{$El} {
+    @content;
+  }
+}
+
+@mixin when($state) {
+  @at-root {
+    &.#{$state-prefix + $state} {
+      @content;
+    }
+  }
+}
+
+@mixin join($modifier) {
+  $selector: &;
+  $currentSelector: & + $modifier-separator + $modifier;
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}
+
+@mixin res($key, $map: $--breakpoints) {
+    @if map-has-key($map, $key) {
+        @media only screen and #{inspect(map-get($map, $key))}{
+            @content;
+        }
+    }
+    @else {
+        @warn "undefiend potions: `#{$map}`";
+    }
+}
+
+@mixin button-variant($color, $background-color, $border-color) {
+  color: $color;
+  background-color: $background-color;
+  border-color: $border-color;
+
+  &:hover {
+    color: $color;
+    background-color: mix(
+      $--color-white,
+      $background-color,
+      $--button-hover-tint-percent
+    );
+    border-color: mix(
+      $--color-white,
+      $border-color,
+      $--button-hover-tint-percent
+    );
+  }
+  &:active {
+    background-color: mix(
+      $--color-black,
+      $background-color,
+      $--button-active-shade-percent
+    );
+    border-color: mix(
+      $--color-black,
+      $background-color,
+      $--button-active-shade-percent
+    );
+  }
+  &.is-disabled {
+    color: $--color-white;
+    background-color: mix($background-color, $--color-white);
+    border-color: mix($border-color, $--color-white);
+  }
+
+  &.is-plain {
+    @include button-plain($background-color);
+  }
+}
+
+@mixin button-plain($color) {
+  color: $color;
+  background-color: mix($color, $--color-white, 10%);
+  border-color: mix($color, $--color-white, 90%);
+
+  &:hover {
+    color: $--color-white;
+    background-color: $color;
+    border-color: $color;
+  }
+  &:active {
+    background-color: mix(
+      $--color-black,
+      $color,
+      $--button-active-shade-percent
+    );
+    border-color: mix($--color-black, $color, $--button-active-shade-percent);
+  }
+}
+
+@mixin button-size(
+  $padding-vertical,
+  $padding-horizontal,
+  $font-size,
+  $border-radius
+) {
+  padding: $padding-vertical $padding-horizontal;
+  font-size: $font-size;
+  border-radius: $border-radius;
+}

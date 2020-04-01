@@ -1,0 +1,96 @@
+@import "./mixins/mixins.scss";
+
+@include el(col) {
+    float: left;
+    box-sizing: border-box;
+    // border: 1px solid red;
+}
+
+.mf-col-0 {
+    display: none;
+}
+
+@for $i from 0 through 24 {
+    .mf-col-#{$i} {
+        width: ($i/24)*100*1%;
+    }
+
+    .mf-col-offset-#{$i} {
+        margin-left: ($i/24)*100*1%;
+    }
+}
+
+@include res(xs) {
+    .mf-col-xs-0 {
+        display: none;
+    }
+    @for $i from 0 through 24 {
+        .mf-col-xs-#{$i} {
+            width: ($i/24)*100*1%;
+        }
+    
+        .mf-col-xs-offset-#{$i} {
+            margin-left: ($i/24)*100*1%;
+        }
+    }
+}
+
+@include res(sm) {
+    .mf-col-sm-0 {
+        display: none;
+    }
+    @for $i from 0 through 24 {
+        .mf-col-sm-#{$i} {
+            width: ($i/24)*100*1%;
+        }
+    
+        .mf-col-sm-offset-#{$i} {
+            margin-left: ($i/24)*100*1%;
+        }
+    }
+}
+
+@include res(md) {
+    .mf-col-md-0 {
+        display: none;
+    }
+    @for $i from 0 through 24 {
+        .mf-col-md-#{$i} {
+            width: ($i/24)*100*1%;
+        }
+    
+        .mf-col-md-offset-#{$i} {
+            margin-left: ($i/24)*100*1%;
+        }
+    }
+}
+
+@include res(lg) {
+    .mf-col-lg-0 {
+        display: none;
+    }
+    @for $i from 0 through 24 {
+        .mf-col-lg-#{$i} {
+            width: ($i/24)*100*1%;
+        }
+    
+        .mf-col-lg-offset-#{$i} {
+            margin-left: ($i/24)*100*1%;
+        }
+    }
+}
+
+@include res(xl) {
+    .mf-col-xl-0 {
+        display: none;
+    }
+    @for $i from 0 through 24 {
+        .mf-col-xl-#{$i} {
+            width: ($i/24)*100*1%;
+        }
+    
+        .mf-col-xl-offset-#{$i} {
+            margin-left: ($i/24)*100*1%;
+        }
+    }
+}

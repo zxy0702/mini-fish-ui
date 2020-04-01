@@ -1,0 +1,143 @@
+@import "./common/var.scss";
+@import "./mixins/mixins.scss";
+
+@include el(button) {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  color: $--button-default-font-color;
+  border: $--border-base;
+  background-color: $--color-white;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  transition: 0.1s;
+  @include button-size(
+    $--button-medium-padding-vertical,
+    $--button-medium-padding-horizontal,
+    $--button-medium-font-size,
+    $--button-medium-border-radius
+  );
+
+  &:hover {
+    color: $--color-primary;
+    background-color: mix($--color-primary, $--color-white, 10%);
+    border-color: mix($--color-primary, $--color-white, 90%);
+  }
+  &:active {
+    color: mix(
+      $--color-black,
+      $--color-primary,
+      $--button-active-shade-percent
+    );
+    border-color: mix(
+      $--color-black,
+      $--color-primary,
+      $--button-active-shade-percent
+    );
+  }
+
+  &.is-disabled {
+    cursor: not-allowed;
+    color: mix($--button-default-font-color, $--color-white);
+    border-color: mix($--border-color-base, $--color-white);
+  }
+  @include when(plain) {
+    &:hover {
+      color: $--color-primary;
+      background-color: transparent;
+      border-color: mix($--color-primary, $--color-white, 90%);
+    }
+    &:active {
+      color: mix(
+        $--color-black,
+        $--color-primary,
+        $--button-active-shade-percent
+      );
+      border-color: mix(
+        $--color-black,
+        $--color-primary,
+        $--button-active-shade-percent
+      );
+    }
+  }
+  &.is-round {
+    border-radius: 20px;
+  }
+  &.is-circle {
+    border-radius: 50%;
+    padding: 11.5px 12px;
+  }
+}
+.mf-button--primary {
+  @include button-variant(
+    $--button-primary-font-color,
+    $--button-primary-background-color,
+    $--button-primary-border-color
+  );
+}
+.mf-button--green {
+  @include button-variant(
+    $--button-green-font-color,
+    $--button-green-background-color,
+    $--button-green-border-color
+  );
+}
+.mf-button--yellow {
+  @include button-variant(
+    $--button-yellow-font-color,
+    $--button-yellow-background-color,
+    $--button-yellow-border-color
+  );
+}
+.mf-button--red {
+  @include button-variant(
+    $--button-red-font-color,
+    $--button-red-background-color,
+    $--button-red-border-color
+  );
+}
+.mf-button--blue {
+  @include button-variant(
+    $--button-blue-font-color,
+    $--button-blue-background-color,
+    $--button-blue-border-color
+  );
+}
+.mf-button--text {
+  color: $--color-primary;
+  background-color: transparent;
+  border-color: transparent;
+
+  &:hover {
+    color: mix($--color-white, $--color-primary, $--button-hover-tint-percent);
+    background-color: transparent;
+    border-color: transparent;
+  }
+
+  &.is-disabled {
+    cursor: not-allowed;
+    color: mix($--button-default-font-color, $--color-white, 30%);
+    border: transparent;
+  }
+}
+
+.mf-button--large {
+  @include button-size(
+    $--button-large-padding-vertical,
+    $--button-large-padding-horizontal,
+    $--button-large-font-size,
+    $--button-large-border-radius
+  );
+}
+.mf-button--small {
+  @include button-size(
+    $--button-small-padding-vertical,
+    $--button-small-padding-horizontal,
+    $--button-small-font-size,
+    $--button-small-border-radius
+  );
+}

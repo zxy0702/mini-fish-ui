@@ -1,0 +1,7 @@
+@import "./mixins/mixins.scss";
+
+@include el(footer) {
+    text-align: center;
+    line-height: 50px;
+    background-color: #ffa197;
+}
