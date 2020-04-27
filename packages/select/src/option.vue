@@ -2,7 +2,9 @@
   <li
     class="mf-select-menu__item"
     :class="{'is-disabled':disabled,
-    'selected':itemSelect}"
+    'selected':itemSelect,
+    'is-hover': hover}"
+    @mouseenter="HoverOption"
     @click.stop="selectOption"
   >
     <slot>
@@ -17,15 +19,30 @@ export default {
   name: "MfOption",
   mixins: [Emitter],
   inject: ["select"],
+  data() {
+    return {
+      hover: false
+    };
+  },
   props: {
     label: String,
     value: String,
     disabled: Boolean
   },
+  created() {
+    this.select.options.push(this);
+  },
+  destroyed() {
+    let index = this.select.options.indexOf(this);
+    this.select.options.splice(index, 1);  
+  },
   computed: {
     itemSelect() {
       if (this.select.multiple) {
-          return this.select.selectValue && this.select.selectValue.indexOf(this.value) > -1;
+        return (
+          this.select.selectValue &&
+          this.select.selectValue.indexOf(this.value) > -1
+        );
       }
       return this.value === this.select.value;
     }
@@ -35,7 +52,12 @@ export default {
       if (this.disabled) {
         return;
       }
-      this.dispatch("MfSelect", "selectOption", this);
+      this.dispatch("MfSelect", "selectOption");
+    },
+    HoverOption() {
+      if (!this.disabled) {
+        this.select.hoverIndex = this.select.options.indexOf(this);
+      }
     }
   }
 };

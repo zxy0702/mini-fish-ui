@@ -3,9 +3,9 @@
 `mini-fish-ui`是一款基于`Vue2.0`,仿`element ui`的前端UI组件库。
 
 ### 安装使用
-```bash
-npm install mini-fish-ui
-```
+
+`npm install mini-fish-ui`
+
 在`main.js`中引入
 ```javascript
 import Vue from 'vue';

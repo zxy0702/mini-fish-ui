@@ -46,73 +46,86 @@ a {
   border: 0;
 }
 
-
-html,body {
-    width: 100%;
-    min-height: 100%;
-    background: url('../image/background.png') no-repeat center;
-    background-size: cover;
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  background: url("../image/background.png") no-repeat center;
+  background-size: cover;
 }
 
 #app {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    .header {
-        background-color: rgba(255, 255, 255, 0.7);
-        box-shadow:  0px 0px 60px 0px #fff;
-    }
+  .header {
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 0px 60px 0px #fff;
+  }
 }
 
 .title {
-    width: 90%;
-    height: 80px;
-    line-height: 80px;
-    margin: 0 auto;
-    font-weight: normal;
-    text-indent: 25px;
-    background: url('../image/fish.svg') no-repeat left center;
+  width: 90%;
+  height: 80px;
+  line-height: 80px;
+  margin: 0 auto;
+  font-weight: normal;
+  text-indent: 25px;
+  background: url("../image/fish.svg") no-repeat left center;
 }
 .main {
-    width: 90%;
-    margin: 20px auto;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.6);
-    box-shadow:  0px 1px 20px 0px #fff;
+  width: 90%;
+  margin: 20px auto;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0px 1px 20px 0px #fff;
 }
-.example{
-    padding: 20px;
+.example {
+  padding: 20px;
 
-    >div+div {
-        margin-top: 10px;
-    }
-    .mf-icon {
-        color: #606266;
-    }
+  > div + div {
+    margin-top: 10px;
+  }
+  .mf-icon {
+    color: #606266;
+  }
 
-    .mf-header,.mf-aside,.mf-main,.mf-footer{
-        text-align: center;
-        color: #000;
-    }
-    .mf-header {
-        background-color: #ff9f9f;
-    }
-    .mf-aside {
-        background-color: #ee8080;
-    }
-    .mf-main {
-        line-height: 160px;
-        background-color: #f1bfbf;
-    }
-    .mf-footer {
-        background-color: #d85353;
-    }
+  .mf-header,
+  .mf-aside,
+  .mf-main,
+  .mf-footer {
+    text-align: center;
+    color: #000;
+  }
+  .mf-header {
+    background-color: #ff9f9f;
+  }
+  .mf-aside {
+    background-color: #ee8080;
+  }
+  .mf-main {
+    line-height: 160px;
+    background-color: #f1bfbf;
+  }
+  .mf-footer {
+    background-color: #d85353;
+  }
 
-    .grid-content {
-        height: 35px;
-        border-radius: 5px;
-        background-color: #f7afaf;
+  .grid-content {
+    height: 35px;
+    border-radius: 5px;
+    background-color: #f7afaf;
+  }
+
+  .mf-carousel {
+    text-align: center;
+    .mf-carousel__item:nth-child(1n) {
+      background-color: #ffcece;
     }
+    .mf-carousel__item:nth-child(2n) {
+      background-color: #ffb4b4;
+    }
+  }
 }
 
 @import "./markdown.scss";

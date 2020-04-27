@@ -12,6 +12,8 @@ import Select from './select/index';
 import Loading from './loading/index';
 import Row from './row/index';
 import Col from './col/index';
+import Carousel from './carousel/index';
+import CarouselItem from './carousel-item/index';
 import InfiniteScroll from "./infinite-scroll/index";
 
 const components = [
@@ -27,7 +29,9 @@ const components = [
     Option,
     Select,
     Row,
-    Col
+    Col,
+    Carousel,
+    CarouselItem
 ]
 
 const install = function(Vue) {
@@ -59,5 +63,7 @@ export default {
     Select,
     Loading,
     Row,
-    Col
+    Col,
+    Carousel,
+    CarouselItem
 }

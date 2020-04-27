@@ -6,17 +6,7 @@
             "desc": "介绍"
         }
     ],
-    "组件": [
-        {
-            "name": "layout",
-            "path": "/layout",
-            "desc": "Layout 布局容器"
-        },
-        {
-            "name": "grid",
-            "path": "/grid",
-            "desc": "Grid 栅格布局"
-        },
+    "基础组件": [
         {
             "name": "icon",
             "path": "/icon",
@@ -31,7 +21,9 @@
             "name": "tag",
             "path": "/tag",
             "desc": "Tag 标签"
-        },
+        }
+    ],
+    "表单组件": [
         {
             "name": "input",
             "path": "/input",
@@ -41,11 +33,30 @@
             "name": "select",
             "path": "/select",
             "desc": "Select 选择器"
+        }
+    ],
+    "布局组件": [
+        {
+            "name": "layout",
+            "path": "/layout",
+            "desc": "Layout 布局容器"
         },
+        {
+            "name": "grid",
+            "path": "/grid",
+            "desc": "Grid 栅格布局"
+        }
+    ],
+    "其他组件":[
         {
             "name": "loading",
             "path": "/loading",
             "desc": "Loading 加载"
+        },
+        {
+            "name": "carousel",
+            "path": "/carousel",
+            "desc": "Carousel 轮播图"
         },
         {
             "name": "infiniteScroll",

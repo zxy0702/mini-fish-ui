@@ -7,7 +7,7 @@ function markLoader(source) {
     });
 
     let content = md.render(source);
-    var codes = content.match(/<pre[\s\S]*?<\/pre>/g) || [];
+    var codes = content.match(/<pre><code class="language-html[\s\S]*?<\/pre>/g) || [];
     for (code of codes) {
         content = content.replace(code, `<demo-block>
         <template v-pre>${code}</template>

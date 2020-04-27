@@ -7,9 +7,10 @@ Vue.use(VueRouter);
 let routes = [];
 
 Object.keys(navConfig).forEach(nav => {
+    console.log(navConfig[nav]);
     routes = routes.concat(navConfig[nav]);
 });
-
+console.log(routes);
 
 addComponent(routes);
 

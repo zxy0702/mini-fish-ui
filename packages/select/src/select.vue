@@ -20,6 +20,9 @@
       @blur="handleBlur"
       @mouseenter.native="inputHoving=true"
       @mouseleave.native="inputHoving=false"
+      @keydown.native.down.stop.prevent="navigateOptions('next')"
+      @keydown.native.up.stop.prevent="navigateOptions('prev')"
+      @keydown.native.enter.stop.prevent="selectOption"
       ref="input"
     >
       <template slot="prefix" v-if="$slots.prefix">
@@ -30,14 +33,18 @@
         <i
           v-if="showClose"
           class="mf-input__icon mf-icon-close-circle mf-input__clear"
-          @click="handleClearClick"
+          @click.stop="handleClearClick"
         ></i>
       </template>
     </mf-input>
     <transition name="slide-fade">
       <mf-select-menu v-if="visible" :styleTop="selectMenuTop">
-        <mf-option></mf-option>
+        <mf-option v-if="false"></mf-option>
         <slot></slot>
+        <template v-if="options.length === 0">
+            <slot name="empty" v-if="$slots.empty"></slot>
+            <p class="mf-select-menu__empty" v-else>无数据</p>
+        </template>
       </mf-select-menu>
     </transition>
   </div>
@@ -49,9 +56,11 @@ import MfInput from "./../../input/src/main";
 import MfSelectMenu from "./select-menu";
 import MfOption from "./option";
 import clickOutside from "../../../src/utils/clickOutside";
+import navigation from "./navigation";
 export default {
   name: "MfSelect",
   componentName: "MfSelect",
+  mixins: [navigation],
   components: {
     MfTag,
     MfInput,
@@ -66,6 +75,7 @@ export default {
   directives: { clickOutside },
   data() {
     return {
+      options: [],
       selectValue: this.multiple ? [] : "",
       tagLabel: [],
       input: null,
@@ -73,7 +83,8 @@ export default {
       initialInputHeight: 0,
       inputValue: "",
       visible: false,
-      inputHoving: false
+      inputHoving: false,
+      hoverIndex: -1
     };
   },
   props: {
@@ -116,20 +127,32 @@ export default {
       if (!this.disabled) {
         this.visible = !this.visible;
       }
-      this.$emit('visible-change', this.visible);
+      this.$emit("visible-change", this.visible);
     },
-    selectOption(option) {
-      if (this.multiple) {
+    selectOption() {
+        console.log(this.options);
+      if(!this.visible) {
+          this.toggleOption();
+      }
+      else if(this.options[this.hoverIndex]) {
+          console.log("进");
+          console.log(this.options);
+          this.handleSelectOption(this.options[this.hoverIndex]);
+      }
+    },
+    handleSelectOption(option) {
+        if (this.multiple) {
         let index = this.getValueIndex(this.selectValue, option.value);
         if (index > -1) {
           this.selectValue.splice(index, 1);
-          this.tagLabel.splice(index,1);
+          this.tagLabel.splice(index, 1);
         } else {
           this.selectValue.push(option.value);
           this.tagLabel.push(option.label);
         }
         this.setSelected();
       } else {
+        this.selectValue = option.value;
         this.inputValue = option.label;
         this.visible = false;
       }
@@ -141,18 +164,19 @@ export default {
     },
     setSelected() {
       if (this.selectValue.length > 0) {
-          this.inputValue = " ";
-        } else {
-          this.inputValue = "";
-        }
-        this.$nextTick(() => {
-          this.setInputHeight();
-        });
+        this.inputValue = " ";
+      } else {
+        this.inputValue = "";
+      }
+      this.$nextTick(() => {
+        this.setInputHeight();
+      });
     },
     handleClearClick() {
-      event.stopPropagation();
+    //   event.stopPropagation();
       let value = "";
       this.selectValue = value;
+      this.inputValue = value;
       this.tagLabel = value;
       this.$emit("input", this.selectValue);
       this.$emit("clear");
@@ -173,21 +197,21 @@ export default {
       );
     },
     handleTagClose(event, tag) {
-       let index = this.tagLabel.indexOf(tag);
-       if(index > -1) {
-           this.tagLabel.splice(index, 1);
-           this.selectValue.splice(index, 1);
-           this.$emit('input', this.selectValue);
-           this.$emit('remove-tag', tag.value);
-       }
-       this.setSelected();
-       event.stopPropagation();
+      let index = this.tagLabel.indexOf(tag);
+      if (index > -1) {
+        this.tagLabel.splice(index, 1);
+        this.selectValue.splice(index, 1);
+        this.$emit("input", this.selectValue);
+        this.$emit("remove-tag", tag.value);
+      }
+      this.setSelected();
+      event.stopPropagation();
     },
     handleFocus(event) {
-        this.$emit('focus', event);
+      this.$emit("focus", event);
     },
     handleBlur(event) {
-        this.$emit('blur', event);
+      this.$emit("blur", event);
     }
   }
 };

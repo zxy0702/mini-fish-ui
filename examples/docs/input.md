@@ -5,8 +5,7 @@
 ```html
 <mf-input
   v-model="input"
-  type="number"
-  min="0"
+  type="text"
   placeholder="请输入内容"
 ></mf-input>
 ```

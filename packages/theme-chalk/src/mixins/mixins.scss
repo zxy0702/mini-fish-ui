@@ -8,7 +8,16 @@
     @content;
   }
 }
+@mixin m($modifier) {
+    $selector: &;
+    $currentSelector: #{$selector+$element-separator+$modifier};
 
+    @at-root {
+        #{$currentSelector} {
+            @content;
+        }
+    }
+}
 @mixin when($state) {
   @at-root {
     &.#{$state-prefix + $state} {
