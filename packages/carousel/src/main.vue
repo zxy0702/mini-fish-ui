@@ -190,10 +190,6 @@ export default {
       } else {
         this.activeIndex = index;
       }
-      //   if (oldIndex === this.activeIndex) {
-      //     console.log("111");
-      //     this.resetItemPosition(oldIndex);
-      //   }
     },
     prev() {
       this.setActiveItem(this.activeIndex - 1);

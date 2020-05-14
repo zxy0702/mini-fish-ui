@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import MfTag from "./../../Tag/src/main";
+import MfTag from "./../../tag/src/main";
 import MfInput from "./../../input/src/main";
 import MfSelectMenu from "./select-menu";
 import MfOption from "./option";
@@ -130,13 +130,10 @@ export default {
       this.$emit("visible-change", this.visible);
     },
     selectOption() {
-        console.log(this.options);
       if(!this.visible) {
           this.toggleOption();
       }
       else if(this.options[this.hoverIndex]) {
-          console.log("进");
-          console.log(this.options);
           this.handleSelectOption(this.options[this.hoverIndex]);
       }
     },

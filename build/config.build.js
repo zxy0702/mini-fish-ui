@@ -5,7 +5,7 @@ module.exports = {
     outputDir: resolve('lib'),
     configureWebpack: {
         entry: {
-            ...getComponentEntries('packages'),
+            ...getComponentEntries('packages')
         },
         output: {
             filename: '[name]/index.js',
@@ -16,9 +16,9 @@ module.exports = {
         resolve: pub.resolve
     },
     css: {
-        sourceMap: true,
+        sourceMap: false,
         extract: {
-            filename: '[name]/style.css'
+            filename: 'theme-chalk/[name].css'
         }
     },
     chainWebpack: config => {

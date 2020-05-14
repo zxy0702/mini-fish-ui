@@ -125,3 +125,26 @@
   transform: translateY(-50%) translateX(10px);
   opacity: 0;
 }
+
+
+
+@include el(carousel) {
+    @include m(item) {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: $--normal-zIndex;
+
+        @include when(animating) {
+            transition: transform .4s ease-in-out;
+        }
+
+        @include join(card) {
+            width: 50%;
+        }
+
+        @include when(active) {
+            z-index: #{$--normal-zIndex+1};
+        }
+    }
+}
